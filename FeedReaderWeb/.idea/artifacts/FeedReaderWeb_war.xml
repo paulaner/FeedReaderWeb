@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="FeedReaderWeb:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="feedreader.war">
+      <element id="artifact" artifact-name="FeedReaderWeb:war exploded" />
+    </root>
+  </artifact>
+</component>
