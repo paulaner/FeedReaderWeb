@@ -31,7 +31,6 @@ public class TextListener implements MessageListener {
         TextMessage msg = null;
         try {
             if (message instanceof TextMessage) {
-//                Jedis jedis = new Jedis("localhost");
                 Jedis jedis = RedisUtil.getJedis();
 
                 msg = (TextMessage) message;
@@ -39,16 +38,16 @@ public class TextListener implements MessageListener {
                 jedis.select(REDIS.FEED_USERS.getValue());
                 List<String> users = jedis.lrange(feed, 0, jedis.llen(feed));
 
+                //subscriber-articles
+                jedis.select(REDIS.USER_ARTICLES.getValue());
                 for (String user : users) {
-                    //subscriber-articles
-                    jedis.select(REDIS.USER_ARTICLES.getValue());
                     List<String> articles;
                     if (jedis.exists(user)) {
                         articles = jedis.lrange(user, 0, jedis.llen(user));
                     } else {
                         articles = new ArrayList<>();
                     }
-                    if (!articles.contains(user)) {
+                    if (!articles.contains(msg.getText())) {
                         jedis.lpush(user, msg.getText());
                         System.out.println(user + " Read Article : " + msg.getText());
                     }
