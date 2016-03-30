@@ -1,12 +1,4 @@
 # FeedReaderWeb
-Open stream/feed reader
+Stream/Feed reader
 
-Feed Reader is a set of feed/message reading APIs.
-
-Reading source: ActiveMQ
-
-Persistent: Redis
-
-Container: Tomcat
-
-Demo: 
+For more information and usage please read *FeedAPIOverview*
